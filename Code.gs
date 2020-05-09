@@ -46,7 +46,8 @@ function mailMergeInstance(text,variableNames,variableValues)
   //Text in source document is {{value}}, where the variable name is simply value
   if(variableValues.length) {
     for(var i=0; i<variableNames.length; i++) {
-      text = text.replace("\{\{" + variableNames[i] + "\}\}",variableValues.shift());
+      var replaceRegex = new RegExp("\{\{" + variableNames[i] + "\}\}",'g');
+      text = text.replace(replaceRegex, variableValues.shift());
     }
     return text;
   } else {
